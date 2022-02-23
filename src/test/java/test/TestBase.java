@@ -11,12 +11,12 @@ import java.util.concurrent.TimeUnit;
 public class TestBase {
     protected WebDriver driver;
 
-    @BeforeMethod(description = "Открыть главную страницу Yandex")
+    @BeforeMethod(description = "Открыть главную страницу Yandex, настроить ожидания и размер окна")
     public void setUp() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
         driver.get("https://yandex.ru/");
     }
 

@@ -2,38 +2,39 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class MainYandexPage {
     WebDriver driver;
 
+
+
     // поле поиска Яндекс (главная страница"
-    private final By searchField = By.xpath("//input[@id='text']");
+    @FindBy(xpath = "//input[@id='text']")
+    private WebElement searchField;
 
     // кнопка "Войти"
-    private final By enterButton = By.xpath("//div[contains(text(),'Войти')]");
-    // кнопка "Почта"
-    private final By mailboxButton = By.xpath("//div[@class='desk-notif-card__mail-title']");
+    @FindBy(xpath = "//div[contains(text(),'Войти')]")
+    private WebElement enterButton;
 
-    // кнопка закрытия баннера "Сделать стартовой страницей"
-    private final By popupClose = By.xpath("//div[@class='popup-close-btn']");
+    // кнопка "Почта"
+    @FindBy(xpath = "//div[@class='desk-notif-card__mail-title']")
+    private WebElement mailboxButton;
 
 
     public MainYandexPage(WebDriver driver) {
-        this.driver = driver;
+        PageFactory.initElements(driver, this);
     }
 
-    public void closePopupBanner() {
-        if(driver.findElement(popupClose).isEnabled()) {
-            driver.findElement(popupClose).click();
-        }
-    }
 
     public void enterButtonClick() {
-        driver.findElement(enterButton).click();
+        enterButton.click();
     }
 
     public void goToMailbox() {
-        driver.findElement(mailboxButton).click();
+        mailboxButton.click();
     }
 }
 
